@@ -1,0 +1,140 @@
+<div class="chartable-wrapper" style="width: 100%">
+  <div class="chartable-top-bar" style="display: inline-block;padding: 0 0 10px;">
+    <div class="chartablePageLength" style="margin:10px 0 10px 0; float: left;">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Page Length</div>
+        </div>
+        <select class="form-control" ng-model="pageLengthActive" ng-change="pageLengthChange()">
+          <option ng-repeat="pl in pageLength" value="{{ pl }}">{{
+            pl
+            }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="chartableSearch" style="margin:10px 0 10px 0; position: absolute;right: 15px;">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <button class="btn input-group-text" , data-toggle="modal" data-target="#chartSelect{{idx}}">
+            Charts
+          </button>
+          <button class="btn input-group-text" ng-click="refresh()">
+            <i class="fas fa-sync-alt"></i>
+          </button>
+          <div class="input-group-text">
+            <i class="fas fa-search"></i>
+          </div>
+        </div>
+        <input type="text" class="form-control" placeholder="Search" aria-label="Search" aria-describedby="btnGroupAddon"
+          ng-model="searchTxt" ng-change="searchRows()" />
+      </div>
+    </div>
+  </div>
+  <div class="chartableTable">
+    <h2 id="charttableTable-header" ng-if="tableTitle!=''">{{tableTitle}}</h2>
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered">
+        <thead>
+          <tr>
+            <th ng-repeat="col in columns" ng-click="sortData(col)">
+              {{ col }}
+              <span class="fas fa-arrows-alt-h float-right" style="color:rgb(5, 80, 131)" ng-if="sortIndex!=col"></span>
+              <span class="fas fa-arrow-down float-right" style="color:rgb(224, 57, 57)" ng-if="sortIndex==col&&sortToggle"></span>
+              <span class="fas fa-arrow-up float-right" style="color:rgb(104, 216, 104)" ng-if="sortIndex==col&&!sortToggle"></span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in copy" ng-if="activeData.indexOf($index)!=-1">
+            <td ng-repeat="col in columns">{{ row[col] }}</td>
+          </tr>
+          <tr ng-if="copy.length==0" style="text-align: center">
+            <td colspan="{{columns.length}}">No Data to Display</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="charttableBottomBar" style="display: inline-block;padding: 0 0 10px;">
+    <div class="chartableDataInfo" style="margin:10px 0 10px 0;max-width: 50%; float: left;">
+      <h5>
+        <span class="badge badge-secondary" ng-if="copy.length!=0">
+          Showing {{ activeData[0] + 1 }} to {{
+          activeData[activeData.length-1]>copy.length?copy.length:activeData[activeData.length-1] + 1 }} of {{
+          copy.length }} entries
+        </span>
+        <span class="badge badge-secondary" ng-if="copy.length==0">
+          No entries
+        </span>
+      </h5>
+    </div>
+    <div class="charttablePagination" style="float:right;position: absolute;right: 15px;" ng-if="tblPages.length!=0">
+      <div class="btn-group mr-2" role="group" aria-label="First group" style="margin-right: 0 !important">
+        <button type="button" class="btn " ng-disabled="pagingActive=='1'" ng-click="prev();pagingChange(pagingActive)">
+          Prev
+        </button>
+        <button type="button" class="btn" ng-repeat="pg in tblPages" ng-click="pagingChange(pg)" ng-class="{'btn-secondary' : $index + 1 == pagingActive}"
+          ng-if="pagingActive==1?$index<3:(pagingActive==tblPages.length?$index>tblPages.length-4:(pg>toInt(pagingActive)-2&&pg<toInt(pagingActive)+2))">
+          {{ pg }}
+        </button>
+        <button type="button" class="btn" ng-disabled="pagingActive==tblPages.length" ng-click="next();pagingChange(pagingActive)">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="chartSelect{{idx}}" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Charts</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Please Select One or More Data Columns ( Press Ctrl + Right Mouse
+            Button for Multiple Selection )</label>
+          <select multiple class="form-control" ng-model="selectedData">
+            <option ng-repeat="col in columns" value="{{ $index }}">{{
+              col
+              }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Please Select A Chart</label>
+          <select class="form-control" ng-model="chartType">
+            <option value="line">Line</option>
+            <option value="column">Column</option>
+            <option value="bar">Bar</option>
+            <option value="area">Area</option>
+            <option value="scatter">Scatter</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#chartModal{{idx}}" ng-click="drawChart()">
+          Draw
+        </button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="chartModal{{idx}}" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="chartableChart{{idx}}"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

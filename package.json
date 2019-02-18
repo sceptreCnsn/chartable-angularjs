@@ -1,0 +1,51 @@
+{
+  "_from": "chartable-angularjs",
+  "_id": "chartable-angularjs@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-P0d8rkN6C5NEDxTpakI4r0oyYX20C5zousAJENapuw25LRMGuep9npruCeYA3bpftv1L+SU5DK7mF2hfy11SVg==",
+  "_location": "/chartable-angularjs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "chartable-angularjs",
+    "name": "chartable-angularjs",
+    "escapedName": "chartable-angularjs",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/chartable-angularjs/-/chartable-angularjs-1.0.2.tgz",
+  "_shasum": "4af236a87510caeb810d730e424ff1a3cc88e0bf",
+  "_spec": "chartable-angularjs",
+  "_where": "C:\\Users\\Cnsn\\Desktop\\angularJs",
+  "author": {
+    "name": "Cansın Memis"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Chartable is a very light, compact and easy to use automated chart supported datatable plug-in for AngularJS apps.",
+  "keywords": [
+    "['chartable'",
+    "'angularjs'",
+    "'datatable'",
+    "'datatables'",
+    "'highcharts'",
+    "'chart'",
+    "'automated'",
+    "'bootstrap4'",
+    "'directive'",
+    "'angular']"
+  ],
+  "license": "ISC",
+  "main": "chartable-angular.js",
+  "name": "chartable-angularjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.2"
+}

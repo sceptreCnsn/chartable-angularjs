@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/series-label.js"></script>
+  <script src="https://code.highcharts.com/modules/exporting.js"></script>
+  <script src="https://code.highcharts.com/modules/export-data.js"></script>
+  <script src="chartable-angular.js"></script>
+</head>
+
+<body>
+  <div class="container" ng-app="myApp" ng-controller="myCtrl">
+    <div class="col-sm-12">
+      <chartable dtmodel="dt" idx="1" title="Table 1"></chartable>
+      <div></div>
+      <div class="input-group">
+        <button class="btn btn-danger" ng-click="addRow()">Add Row</button>
+      </div>
+    </div>
+    <script>
+      var app = angular.module("myApp", ["chartable"]);
+
+      app.controller("myCtrl", function ($scope) {
+
+        $scope.dt = [
+          {
+            timestamp: "2018-12-24 13:05:00",
+            open: 94.13,
+            high: 94.13,
+            low: 94.13,
+            close: 94.13,
+            volume: 3576304
+          },
+          {
+            timestamp: "2018-12-24 13:00:00",
+            open: 94.95,
+            high: 95.05,
+            low: 94,
+            close: 94.04,
+            volume: 2482941
+          },
+          {
+            timestamp: "2018-12-24 12:55:00",
+            open: 95.04,
+            high: 95.12,
+            low: 94.885,
+            close: 95.09,
+            volume: 817296
+          },
+          {
+            timestamp: "2018-12-24 12:50:00",
+            open: 94.99,
+            high: 95.13,
+            low: 94.7,
+            close: 95.05,
+            volume: 818730
+          },
+          {
+            timestamp: "2018-12-24 12:45:00",
+            open: 95.1,
+            high: 95.21,
+            low: 94.82,
+            close: 94.98,
+            volume: 693763
+          },
+          {
+            timestamp: "2018-12-24 12:40:00",
+            open: 95.28,
+            high: 95.36,
+            low: 94.95,
+            close: 95.1,
+            volume: 567610
+          },
+          {
+            timestamp: "2018-12-24 12:35:00",
+            open: 95.11,
+            high: 95.45,
+            low: 95.05,
+            close: 95.29,
+            volume: 648801
+          },
+          {
+            timestamp: "2018-12-24 12:30:00",
+            open: 95.15,
+            high: 95.63,
+            low: 95.0342,
+            close: 95.1004,
+            volume: 654700
+          },
+          {
+            timestamp: "2018-12-24 12:25:00",
+            open: 95.04,
+            high: 95.21,
+            low: 94.75,
+            close: 95.16,
+            volume: 831389
+          },
+          {
+            timestamp: "2018-12-24 12:20:00",
+            open: 95.36,
+            high: 95.41,
+            low: 94.9,
+            close: 95.05,
+            volume: 1122177
+          },
+          {
+            timestamp: "2018-12-24 12:15:00",
+            open: 95,
+            high: 95.44,
+            low: 94.94,
+            close: 95.36,
+            volume: 686279
+          },
+          {
+            timestamp: "2018-12-24 12:10:00",
+            open: 95.42,
+            high: 95.53,
+            low: 95.01,
+            close: 95.0168,
+            volume: 571451
+          },
+          {
+            timestamp: "2018-12-24 12:05:00",
+            open: 95.17,
+            high: 95.63,
+            low: 95.14,
+            close: 95.4445,
+            volume: 681997
+          },
+          {
+            timestamp: "2018-12-24 12:00:00",
+            open: 95.34,
+            high: 95.4999,
+            low: 95.03,
+            close: 95.17,
+            volume: 662567
+          },
+          {
+            timestamp: "2018-12-24 11:55:00",
+            open: 95.1,
+            high: 95.375,
+            low: 94.94,
+            close: 95.36,
+            volume: 778018
+          },
+          {
+            timestamp: "2018-12-24 11:50:00",
+            open: 95.63,
+            high: 95.67,
+            low: 95.05,
+            close: 95.12,
+            volume: 596090
+          },
+          {
+            timestamp: "2018-12-24 11:45:00",
+            open: 95.91,
+            high: 96.05,
+            low: 95.52,
+            close: 95.6463,
+            volume: 739036
+          },
+          {
+            timestamp: "2018-12-24 11:40:00",
+            open: 95.98,
+            high: 96.02,
+            low: 95.7,
+            close: 95.89,
+            volume: 518098
+          },
+          {
+            timestamp: "2018-12-24 11:35:00",
+            open: 95.88,
+            high: 96.1,
+            low: 95.75,
+            close: 96.015,
+            volume: 728817
+          },
+          {
+            timestamp: "2018-12-24 11:30:00",
+            open: 95.88,
+            high: 95.96,
+            low: 95.7,
+            close: 95.89,
+            volume: 652392
+          },
+          {
+            timestamp: "2018-12-24 11:25:00",
+            open: 96.06,
+            high: 96.22,
+            low: 95.82,
+            close: 95.85,
+            volume: 662424
+          },
+          {
+            timestamp: "2018-12-24 11:20:00",
+            open: 96.3,
+            high: 96.305,
+            low: 95.72,
+            close: 96.09,
+            volume: 598540
+          },
+          {
+            timestamp: "2018-12-24 11:15:00",
+            open: 96.3,
+            high: 96.34,
+            low: 95.91,
+            close: 96.32,
+            volume: 643434
+          },
+          {
+            timestamp: "2018-12-24 11:10:00",
+            open: 96.1945,
+            high: 96.61,
+            low: 96.12,
+            close: 96.2949,
+            volume: 495130
+          },
+          {
+            timestamp: "2018-12-24 11:05:00",
+            open: 96.77,
+            high: 97.01,
+            low: 96.12,
+            close: 96.16,
+            volume: 648872
+          },
+          {
+            timestamp: "2018-12-24 11:00:00",
+            open: 96.36,
+            high: 96.78,
+            low: 96.1171,
+            close: 96.7758,
+            volume: 669580
+          },
+          {
+            timestamp: "2018-12-24 10:55:00",
+            open: 97.06,
+            high: 97.06,
+            low: 96.35,
+            close: 96.37,
+            volume: 820814
+          },
+          {
+            timestamp: "2018-12-24 10:50:00",
+            open: 97.34,
+            high: 97.34,
+            low: 96.76,
+            close: 97.09,
+            volume: 849291
+          },
+          {
+            timestamp: "2018-12-24 10:45:00",
+            open: 96.83,
+            high: 97.8251,
+            low: 96.83,
+            close: 97.3,
+            volume: 1357186
+          },
+          {
+            timestamp: "2018-12-24 10:40:00",
+            open: 96.35,
+            high: 97.13,
+            low: 96.35,
+            close: 96.85,
+            volume: 946599
+          },
+          {
+            timestamp: "2018-12-24 10:35:00",
+            open: 96.575,
+            high: 96.62,
+            low: 96.08,
+            close: 96.34,
+            volume: 768314
+          },
+          {
+            timestamp: "2018-12-24 10:30:00",
+            open: 96.39,
+            high: 96.62,
+            low: 96.16,
+            close: 96.56,
+            volume: 1022802
+          },
+          {
+            timestamp: "2018-12-24 10:25:00",
+            open: 96.14,
+            high: 96.47,
+            low: 95.91,
+            close: 96.4,
+            volume: 1010785
+          },
+          {
+            timestamp: "2018-12-24 10:20:00",
+            open: 96.14,
+            high: 96.15,
+            low: 95.84,
+            close: 96.15,
+            volume: 900493
+          },
+          {
+            timestamp: "2018-12-24 10:15:00",
+            open: 95.78,
+            high: 96.2,
+            low: 95.62,
+            close: 96.1621,
+            volume: 1188312
+          },
+          {
+            timestamp: "2018-12-24 10:10:00",
+            open: 95.28,
+            high: 95.79,
+            low: 94.87,
+            close: 95.75,
+            volume: 1289137
+          },
+          {
+            timestamp: "2018-12-24 10:05:00",
+            open: 95.72,
+            high: 95.85,
+            low: 95.31,
+            close: 95.31,
+            volume: 1143356
+          },
+          {
+            timestamp: "2018-12-24 10:00:00",
+            open: 94.88,
+            high: 95.72,
+            low: 94.69,
+            close: 95.71,
+            volume: 1050823
+          },
+          {
+            timestamp: "2018-12-24 09:55:00",
+            open: 95.15,
+            high: 95.76,
+            low: 94.78,
+            close: 94.9,
+            volume: 1323859
+          },
+          {
+            timestamp: "2018-12-24 09:50:00",
+            open: 96.05,
+            high: 96.05,
+            low: 94.58,
+            close: 95.19,
+            volume: 1866868
+          },
+          {
+            timestamp: "2018-12-24 09:45:00",
+            open: 97.17,
+            high: 97.18,
+            low: 95.43,
+            close: 96.09,
+            volume: 1814388
+          },
+          {
+            timestamp: "2018-12-24 09:40:00",
+            open: 97.825,
+            high: 97.91,
+            low: 96.6,
+            close: 97.17,
+            volume: 1439182
+          },
+          {
+            timestamp: "2018-12-24 09:35:00",
+            open: 97.69,
+            high: 97.96,
+            low: 97.07,
+            close: 97.82,
+            volume: 2111119
+          },
+          {
+            timestamp: "2018-12-21 16:00:00",
+            open: 97.92,
+            high: 98.38,
+            low: 97.84,
+            close: 98.07,
+            volume: 34346431
+          },
+          {
+            timestamp: "2018-12-21 15:55:00",
+            open: 98.01,
+            high: 98.05,
+            low: 97.5,
+            close: 97.91,
+            volume: 1792649
+          },
+          {
+            timestamp: "2018-12-21 15:50:00",
+            open: 98,
+            high: 98.3,
+            low: 97.96,
+            close: 98.02,
+            volume: 1472016
+          },
+          {
+            timestamp: "2018-12-21 15:45:00",
+            open: 97.565,
+            high: 98.03,
+            low: 97.47,
+            close: 97.99,
+            volume: 1257486
+          },
+          {
+            timestamp: "2018-12-21 15:40:00",
+            open: 98.34,
+            high: 98.35,
+            low: 97.56,
+            close: 97.59,
+            volume: 1328876
+          },
+          {
+            timestamp: "2018-12-21 15:35:00",
+            open: 97.85,
+            high: 98.43,
+            low: 97.85,
+            close: 98.34,
+            volume: 1196019
+          },
+          {
+            timestamp: "2018-12-21 15:30:00",
+            open: 98.28,
+            high: 98.28,
+            low: 97.83,
+            close: 97.86,
+            volume: 1161851
+          },
+          {
+            timestamp: "2018-12-21 15:25:00",
+            open: 98.18,
+            high: 98.48,
+            low: 98.17,
+            close: 98.26,
+            volume: 587909
+          },
+          {
+            timestamp: "2018-12-21 15:20:00",
+            open: 98.47,
+            high: 98.63,
+            low: 98.14,
+            close: 98.22,
+            volume: 881243
+          },
+          {
+            timestamp: "2018-12-21 15:15:00",
+            open: 98.96,
+            high: 98.99,
+            low: 98.45,
+            close: 98.475,
+            volume: 715031
+          },
+          {
+            timestamp: "2018-12-21 15:10:00",
+            open: 99.1,
+            high: 99.15,
+            low: 98.84,
+            close: 99.01,
+            volume: 370978
+          },
+          {
+            timestamp: "2018-12-21 15:05:00",
+            open: 99.02,
+            high: 99.19,
+            low: 98.915,
+            close: 99.1,
+            volume: 517760
+          },
+          {
+            timestamp: "2018-12-21 15:00:00",
+            open: 98.92,
+            high: 99.08,
+            low: 98.62,
+            close: 99.05,
+            volume: 563659
+          },
+          {
+            timestamp: "2018-12-21 14:55:00",
+            open: 98.81,
+            high: 99.28,
+            low: 98.81,
+            close: 98.91,
+            volume: 529134
+          },
+          {
+            timestamp: "2018-12-21 14:50:00",
+            open: 98.84,
+            high: 99.04,
+            low: 98.64,
+            close: 98.8,
+            volume: 680472
+          },
+          {
+            timestamp: "2018-12-21 14:45:00",
+            open: 99.24,
+            high: 99.38,
+            low: 98.66,
+            close: 98.77,
+            volume: 624555
+          },
+          {
+            timestamp: "2018-12-21 14:40:00",
+            open: 99.24,
+            high: 99.405,
+            low: 99.205,
+            close: 99.2408,
+            volume: 318781
+          },
+          {
+            timestamp: "2018-12-21 14:35:00",
+            open: 99.3,
+            high: 99.39,
+            low: 99.18,
+            close: 99.22,
+            volume: 312158
+          },
+          {
+            timestamp: "2018-12-21 14:30:00",
+            open: 99.5134,
+            high: 99.5134,
+            low: 99.12,
+            close: 99.3,
+            volume: 427104
+          },
+          {
+            timestamp: "2018-12-21 14:25:00",
+            open: 99.59,
+            high: 99.74,
+            low: 99.455,
+            close: 99.51,
+            volume: 407953
+          },
+          {
+            timestamp: "2018-12-21 14:20:00",
+            open: 99.3375,
+            high: 99.57,
+            low: 99.26,
+            close: 99.57,
+            volume: 619573
+          },
+          {
+            timestamp: "2018-12-21 14:15:00",
+            open: 99.495,
+            high: 99.6429,
+            low: 99.19,
+            close: 99.336,
+            volume: 700891
+          },
+          {
+            timestamp: "2018-12-21 14:10:00",
+            open: 99.61,
+            high: 99.7,
+            low: 99.45,
+            close: 99.501,
+            volume: 348875
+          },
+          {
+            timestamp: "2018-12-21 14:05:00",
+            open: 99.61,
+            high: 99.93,
+            low: 99.47,
+            close: 99.63,
+            volume: 731244
+          },
+          {
+            timestamp: "2018-12-21 14:00:00",
+            open: 99.51,
+            high: 99.65,
+            low: 99.42,
+            close: 99.62,
+            volume: 573140
+          },
+          {
+            timestamp: "2018-12-21 13:55:00",
+            open: 99.69,
+            high: 99.85,
+            low: 99.3,
+            close: 99.5,
+            volume: 393130
+          },
+          {
+            timestamp: "2018-12-21 13:50:00",
+            open: 100.02,
+            high: 100.19,
+            low: 99.68,
+            close: 99.69,
+            volume: 815218
+          },
+          {
+            timestamp: "2018-12-21 13:45:00",
+            open: 99.92,
+            high: 100.21,
+            low: 99.82,
+            close: 100.03,
+            volume: 892434
+          },
+          {
+            timestamp: "2018-12-21 13:40:00",
+            open: 99.945,
+            high: 99.945,
+            low: 99.57,
+            close: 99.9,
+            volume: 634789
+          },
+          {
+            timestamp: "2018-12-21 13:35:00",
+            open: 99.7804,
+            high: 100.02,
+            low: 99.61,
+            close: 99.95,
+            volume: 462773
+          },
+          {
+            timestamp: "2018-12-21 13:30:00",
+            open: 99.9387,
+            high: 100.23,
+            low: 99.62,
+            close: 99.78,
+            volume: 648912
+          },
+          {
+            timestamp: "2018-12-21 13:25:00",
+            open: 99.6,
+            high: 99.99,
+            low: 99.49,
+            close: 99.93,
+            volume: 732641
+          },
+          {
+            timestamp: "2018-12-21 13:20:00",
+            open: 99.66,
+            high: 99.82,
+            low: 99.39,
+            close: 99.57,
+            volume: 518371
+          },
+          {
+            timestamp: "2018-12-21 13:15:00",
+            open: 99.55,
+            high: 99.81,
+            low: 99.34,
+            close: 99.63,
+            volume: 490431
+          },
+          {
+            timestamp: "2018-12-21 13:10:00",
+            open: 99.6,
+            high: 99.645,
+            low: 99.18,
+            close: 99.57,
+            volume: 490731
+          },
+          {
+            timestamp: "2018-12-21 13:05:00",
+            open: 99.45,
+            high: 99.83,
+            low: 99.38,
+            close: 99.6,
+            volume: 624537
+          },
+          {
+            timestamp: "2018-12-21 13:00:00",
+            open: 99.34,
+            high: 99.73,
+            low: 99.17,
+            close: 99.4499,
+            volume: 550260
+          },
+          {
+            timestamp: "2018-12-21 12:55:00",
+            open: 99.76,
+            high: 99.8401,
+            low: 99.33,
+            close: 99.34,
+            volume: 619915
+          },
+          {
+            timestamp: "2018-12-21 12:50:00",
+            open: 99.72,
+            high: 100.14,
+            low: 99.66,
+            close: 99.74,
+            volume: 703960
+          },
+          {
+            timestamp: "2018-12-21 12:45:00",
+            open: 99.52,
+            high: 99.86,
+            low: 99.39,
+            close: 99.72,
+            volume: 627919
+          },
+          {
+            timestamp: "2018-12-21 12:40:00",
+            open: 98.76,
+            high: 99.58,
+            low: 98.74,
+            close: 99.54,
+            volume: 886983
+          },
+          {
+            timestamp: "2018-12-21 12:35:00",
+            open: 98.7927,
+            high: 98.94,
+            low: 98.14,
+            close: 98.76,
+            volume: 1825817
+          },
+          {
+            timestamp: "2018-12-21 12:30:00",
+            open: 99.26,
+            high: 99.31,
+            low: 98.73,
+            close: 98.82,
+            volume: 1198101
+          },
+          {
+            timestamp: "2018-12-21 12:25:00",
+            open: 99.63,
+            high: 99.67,
+            low: 99.24,
+            close: 99.28,
+            volume: 930110
+          },
+          {
+            timestamp: "2018-12-21 12:20:00",
+            open: 99.65,
+            high: 99.906,
+            low: 99.54,
+            close: 99.635,
+            volume: 716558
+          },
+          {
+            timestamp: "2018-12-21 12:15:00",
+            open: 99.82,
+            high: 99.98,
+            low: 99.57,
+            close: 99.68,
+            volume: 853005
+          },
+          {
+            timestamp: "2018-12-21 12:10:00",
+            open: 100.13,
+            high: 100.19,
+            low: 99.56,
+            close: 99.81,
+            volume: 1148973
+          },
+          {
+            timestamp: "2018-12-21 12:05:00",
+            open: 100.355,
+            high: 100.39,
+            low: 100.04,
+            close: 100.11,
+            volume: 759825
+          },
+          {
+            timestamp: "2018-12-21 12:00:00",
+            open: 100.61,
+            high: 100.75,
+            low: 100.24,
+            close: 100.34,
+            volume: 417286
+          },
+          {
+            timestamp: "2018-12-21 11:55:00",
+            open: 100.36,
+            high: 100.86,
+            low: 100.23,
+            close: 100.59,
+            volume: 553352
+          },
+          {
+            timestamp: "2018-12-21 11:50:00",
+            open: 100.88,
+            high: 100.98,
+            low: 100.33,
+            close: 100.36,
+            volume: 728200
+          },
+          {
+            timestamp: "2018-12-21 11:45:00",
+            open: 101.01,
+            high: 101.09,
+            low: 100.79,
+            close: 100.9,
+            volume: 443341
+          },
+          {
+            timestamp: "2018-12-21 11:40:00",
+            open: 101.19,
+            high: 101.3,
+            low: 100.97,
+            close: 100.9998,
+            volume: 460759
+          },
+          {
+            timestamp: "2018-12-21 11:35:00",
+            open: 101.33,
+            high: 101.35,
+            low: 101.06,
+            close: 101.17,
+            volume: 454384
+          },
+          {
+            timestamp: "2018-12-21 11:30:00",
+            open: 101.05,
+            high: 101.27,
+            low: 100.78,
+            close: 101.27,
+            volume: 444340
+          },
+          {
+            timestamp: "2018-12-21 11:25:00",
+            open: 100.93,
+            high: 101.21,
+            low: 100.84,
+            close: 101.08,
+            volume: 432604
+          },
+          {
+            timestamp: "2018-12-21 11:20:00",
+            open: 100.735,
+            high: 101.02,
+            low: 100.55,
+            close: 100.91,
+            volume: 452654
+          }
+        ];
+        $scope.addRow = function () {
+          var obj = {
+            timestamp: $scope.genDate(),
+            open: parseFloat((Math.random() * (100 - 50) + 50).toFixed(2)),
+            high: parseFloat((Math.random() * (100 - 50) + 50).toFixed(2)),
+            low: parseFloat((Math.random() * (100 - 50) + 50).toFixed(2)),
+            close: parseFloat((Math.random() * (100 - 50) + 50).toFixed(2)),
+            volume: parseInt(Math.random() * (1000000 - 5000) + 50000)
+          }
+          $scope.dt.splice(0, 0, obj);
+        }
+
+        $scope.genDate = function () {
+          now = new Date();
+          year = "" + now.getFullYear();
+          month = "" + (now.getMonth() + 1); if (month.length == 1) { month = "0" + month; }
+          day = "" + now.getDate(); if (day.length == 1) { day = "0" + day; }
+          hour = "" + now.getHours(); if (hour.length == 1) { hour = "0" + hour; }
+          minute = "" + now.getMinutes(); if (minute.length == 1) { minute = "0" + minute; }
+          second = "" + now.getSeconds(); if (second.length == 1) { second = "0" + second; }
+          return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+        }
+      });
+    </script>
+  </div>
+</body>
+
+</html>
